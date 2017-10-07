@@ -3,6 +3,8 @@
 *.dll
 *.so
 *.dylib
+agent/agent
+producer/producer
 
 # Test binary, build with `go test -c`
 *.test
