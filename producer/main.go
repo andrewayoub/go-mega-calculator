@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/go-redis/redis"
 	"flag"
 	"bufio"
 	"os"
@@ -20,7 +19,7 @@ func main() {
 	flag.Parse()
 
 
-	//initialize redis client
+	/*//initialize redis client
     client := redis.NewClient(&redis.Options{
             Addr:     *RedisAddr,
             Password: *Password, 
@@ -28,14 +27,22 @@ func main() {
         })
 
 
-    reader := bufio.NewReader(os.Stdin)
-	fmt.Println("sending to " + *QueueName)
+	fmt.Println("sending to " + *QueueName)*/
+
+	sender := Sender{}
+	sender.Init()
+
 	
+	
+	go StartReceiving()
+
+    reader := bufio.NewReader(os.Stdin)
     for {
 		fmt.Println("Enter operation:")
+		//get operation from user input
 	    operation, _ := reader.ReadString('\n')
 
-	    client.LPush(*QueueName,strings.TrimRight(operation, "\n") + "&1")
+	    sender.Send(strings.TrimRight(operation, "\n"))
     }
 
 
