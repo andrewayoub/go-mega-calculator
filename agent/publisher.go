@@ -22,11 +22,11 @@ func (P *Publisher) Start(){
             Password: *Password, 
             DB:       0,  // use default DB
         })
-        fmt.Println("Publishing result on " + *QueueName + "results")
+        fmt.Println("Publishing result on " + QueueName + "results")
         for {
             select{
             case result := <-P.ResultQueue:
-                client.LPush(*QueueName + "results", fmt.Sprintf("{'%s' : '%s = %f'}" , result.ID, result.Cmd, result.Value))
+                client.LPush(QueueName + "results", fmt.Sprintf("{'%s' : '%s = %f'}" , result.ID, result.Cmd, result.Value))
             }
         }
     }()

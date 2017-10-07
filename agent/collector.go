@@ -18,7 +18,7 @@ func Collector() {
 
   for {
     fmt.Println("Collector is running")
-    command,_ := client.BLPop(0, *QueueName).Result()
+    command,_ := client.BLPop(0, QueueName).Result()
     
     commands := s.Split(command[1],"&")
 
