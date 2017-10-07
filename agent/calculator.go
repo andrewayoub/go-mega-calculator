@@ -12,7 +12,6 @@ import (
 
 func calculate(operation string) (float64, error) {
 	//first validate string to be valid operation string
-	fmt.Println(operation)
 	val, err := strconv.ParseFloat(operation, 64)
 	if err == nil {
 		return val, nil
