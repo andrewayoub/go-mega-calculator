@@ -29,7 +29,7 @@ then run these binary files in different terminal windows
 
 to run the agent 
 ```shell
-agent/agent [-queue {queue name}] [-n number of workers] [-addr {redis server address}] [-pass  {redi server password}]
+agent/agent [-queue {queue name}:{number of workers}] [-addr {redis server address}] [-pass  {redi server password}]
 ```
 to run the producer 
 ```shell
@@ -44,4 +44,3 @@ example : 1+2+3*4/5
 this task still considered incomplete
 * write unit tests
 * allow multi-queues 
-* change the CLI to be as mentioned in task description
