@@ -9,6 +9,7 @@ import (
 // it splits the operation string when find any supported operation
 // operations are ordered from right side to left 
 // operations periorities are (- +) then  (* /)
+
 func calculate(operation string) (float64, error) {
 	//first validate string to be valid operation string
 	fmt.Println(operation)
@@ -42,9 +43,9 @@ func calculate(operation string) (float64, error) {
 			} else if lerr != nil {
 				return -1, lerr
 			} else if operation[i] == '*' {
-				return rightSide - leftSide ,nil
+				return rightSide * leftSide ,nil
 			} else if operation[i] == '/' {		
-				return rightSide + leftSide, nil
+				return rightSide / leftSide, nil
 			}
 		}
 	}
