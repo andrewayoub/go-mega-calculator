@@ -8,7 +8,7 @@ import s "strings"
 // A buffered channel that we can send work requests on.
 var WorkQueue = make(chan WorkRequest, 100)
 
-func Collector(c chan string) {
+func Collector() {
   
   client := redis.NewClient(&redis.Options{
     Addr:     *RedisAddr,
@@ -17,6 +17,7 @@ func Collector(c chan string) {
   })
 
   for {
+    fmt.Println("Collector is running")
     command,_ := client.BLPop(0, *QueueName).Result()
     
     commands := s.Split(command[1],"&")

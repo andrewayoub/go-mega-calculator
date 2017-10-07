@@ -22,7 +22,7 @@ func main() {
   StartDispatcher(*NWorkers)
   
   // Register our collector as a radis client.
-  collect := make(chan string)
-  Collector(collect)
+  //collect := make(chan string)
+  Collector()
   
 }

@@ -14,7 +14,7 @@ type Publisher struct {
     ResultQueue chan Result
     QuitChan    chan bool
 }
-
+// start the publisher will start a new client connection to be used to publish results
 func (P *Publisher) Start(){
     go func() {
         client := redis.NewClient(&redis.Options{
@@ -22,10 +22,10 @@ func (P *Publisher) Start(){
             Password: *Password, 
             DB:       0,  // use default DB
         })
+        fmt.Println("Publishing result on " + *QueueName + "results")
         for {
             select{
             case result := <-P.ResultQueue:
-                fmt.Printf("result received %f %s\n", result.Value, result.ID)
                 client.LPush(*QueueName + "results", fmt.Sprintf("{'%s' : '%s = %f'}" , result.ID, result.Cmd, result.Value))
             }
         }

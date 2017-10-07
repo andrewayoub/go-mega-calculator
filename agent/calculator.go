@@ -3,7 +3,6 @@ package main
 import (
 	"strconv"
 	"errors"
-	"fmt"
 )
 // this method is working with recuirsion
 // it splits the operation string when find any supported operation
